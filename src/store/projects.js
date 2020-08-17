@@ -9,7 +9,7 @@ const slice = createSlice({
         addProject: (projects, action) => {
             projects.push({
                 id: ++lastProjId,
-                description: action.payload.description,
+                name: action.payload.name,
             });
         }
     }

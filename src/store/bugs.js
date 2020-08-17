@@ -19,11 +19,6 @@ const slice = createSlice({
             const index = bugs.findIndex(bug => bug.id === action.payload.id);
             bugs[index].resolved = true;
         },
-
-        removeBug: (bugs, action) => {
-            const index = bugs.findIndex(bug => bug.id === action.payload.id);
-            bugs[index].removed = true;
-        }
     }
 });
 
