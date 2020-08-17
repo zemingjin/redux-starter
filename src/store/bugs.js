@@ -11,7 +11,6 @@ const slice = createSlice({
                 id: ++lastId,
                 description: action.payload.description,
                 resolved: false,
-                removed: false
             });
         },
 
@@ -22,7 +21,7 @@ const slice = createSlice({
     }
 });
 
-console.log(slice);
+export const getUnresolvedBugs = state => state.entities.bugs.filter(bug => !bug.resolved);
 
 export const { addBug, resolveBug } = slice.actions;
 export default slice.reducer;
