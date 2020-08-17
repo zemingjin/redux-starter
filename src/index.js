@@ -1,16 +1,26 @@
 import store from './store/configureStore';
-import * as projectActions from './store/projects';
-import { addBug, resolveBug, getUnresolvedBugs } from './store/bugs';
+import { addProject } from './store/projects';
+import { assignBugToUser, addBug, resolveBug, getBugsByUser, getUnresolvedBugs } from './store/bugs';
+import { createSelector } from 'reselect';
+import { addUser } from './store/users';
 
 store.subscribe(() => {
    console.log("Store changed!");
 });
 
-store.dispatch(projectActions.addProject({ name: "Project 1"}));
+store.dispatch(addUser({ name: "User 1"}));
+store.dispatch(addUser({ name: "User 2"}));
+
+store.dispatch(addProject({ name: "Project 1"}));
 
 store.dispatch(addBug({ description: "Bug 1" }));
 store.dispatch(addBug({ description: "Bug 2" }));
 store.dispatch(addBug({ description: "Bug 3" }));
+
+store.dispatch(assignBugToUser({ bugId: 1, userId: 1 }));
 store.dispatch(resolveBug({ id: 1 }));
 
-console.log(getUnresolvedBugs(store.getState()));
+const x = getUnresolvedBugs(store.getState());
+const y = getUnresolvedBugs(store.getState());
+
+console.log(getBugsByUser(1)(store.getState()));
